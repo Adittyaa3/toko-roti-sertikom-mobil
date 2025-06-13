@@ -1,18 +1,17 @@
 // lib/utils/custom_snackbar.dart
-
 import 'package:flutter/material.dart';
 
-// Enum untuk menentukan tipe notifikasi
+
 enum NotificationType { success, error, info }
 
 class CustomSnackBar {
-  // Metode statis agar bisa dipanggil langsung tanpa membuat instance class
+  
   static void show(
     BuildContext context,
     String message, {
-    NotificationType type = NotificationType.info, // Defaultnya adalah info
+    NotificationType type = NotificationType.info, 
   }) {
-    // Tentukan warna dan ikon berdasarkan tipe notifikasi
+    
     Color backgroundColor;
     IconData iconData;
 
@@ -31,10 +30,9 @@ class CustomSnackBar {
         break;
     }
 
-    // Buat dan tampilkan SnackBar
+    
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        // Konten utama yang berisi Ikon dan Pesan
         content: Row(
           children: [
             Icon(iconData, color: Colors.white),
@@ -47,13 +45,14 @@ class CustomSnackBar {
             ),
           ],
         ),
+
         
-        // Styling SnackBar
+        
         backgroundColor: backgroundColor,
-        behavior: SnackBarBehavior.floating, // Membuatnya mengambang
-        margin: const EdgeInsets.all(16),   // Memberi jarak dari tepi layar
+        behavior: SnackBarBehavior.floating, 
+        margin: const EdgeInsets.all(16),   
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Membuat sudut melengkung
+          borderRadius: BorderRadius.circular(12), 
         ),
         duration: const Duration(seconds: 3), // Durasi tampil
       ),
