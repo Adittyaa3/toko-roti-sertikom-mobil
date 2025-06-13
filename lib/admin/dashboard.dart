@@ -20,13 +20,9 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     _fetchOrdersWithDetails();
   }
 
-  /// Mengambil data pesanan LENGKAP dari Supabase dalam satu kali panggilan.
-  /// Termasuk:
-  /// 1. Nama pemesan dari tabel 'detail_users'.
-  /// 2. Item yang dipesan dari tabel 'order_items'.
-  /// 3. Nama produk dari tabel 'products' yang terhubung dengan order_items.
+ 
   Future<void> _fetchOrdersWithDetails() async {
-    // Set loading ke true setiap kali data diambil ulang
+    
     if (!mounted) return;
     setState(() {
       _isLoading = true;
@@ -36,9 +32,9 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
       final response = await supabase
           .from('orders')
           .select(
-            '*, ' // Ambil semua kolom dari tabel orders
-            'detail_users(nama_lengkap), ' // Ambil nama lengkap dari detail_users
-            'order_items(*, products(name))' // Ambil semua item pesanan DAN nama produknya
+            '*, '
+            'detail_users(nama_lengkap), ' 
+            'order_items(*, products(name))' 
           )
           .order('created_at', ascending: false);
 
@@ -61,6 +57,9 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     }
   }
 
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +74,9 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     );
   }
 
-  /// Widget untuk membangun daftar pesanan yang detail.
+
+
+  
   Widget _buildDetailedOrderList() {
     if (_orders.isEmpty) {
       return const Center(
@@ -151,7 +152,9 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     );
   }
 
-  // Helper widget untuk membuat baris detail
+
+
+  // untuk baris
   Widget _buildDetailRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
